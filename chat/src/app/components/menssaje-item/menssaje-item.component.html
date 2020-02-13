@@ -1,0 +1,7 @@
+<div *ngFor="let mensaje of mensajes;">
+<div [ngClass]="mensaje.class">
+  <p style="margin-top: 0px;margin-bottom: 0px;color:green;font-size: 11px;">{{mensaje.text}}</p>
+  <span>{{mensaje.user}}</span>
+   <p style="float: left;margin-bottom: 0px;color:red;font-size: 11px;">{{mensaje.formatDate | date:'short'}}</p>
+</div>
+</div>
