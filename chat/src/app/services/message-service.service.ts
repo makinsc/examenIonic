@@ -13,40 +13,33 @@ import { messajeViewModelmodel } from '../models/messajeViewModel.model';
   providedIn: 'root'
 })
 export class MessageServiceService {
-  
-private socket = webSocket(environment.urlWebSocket);
-  
-public $observer = new Subject<messageoutputmodel>();
+
+  private socket = webSocket(environment.urlWebSocket);
+
+  public $observer = new Subject<messageoutputmodel>();
   constructor(private httpclient: HttpClient) {
-    console.log("soket",this.socket);
     this.socket.subscribe(
       msg => {
-        console.log('message received from server: ' + msg); // Called whenever there is a message from the server.
         this.$observer.next(msg as messageoutputmodel);
-    },
+      },
       err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
       () => console.log('connection WebSocket closed') // Called when connection is closed (for whatever reason).
     );
-    console.log("soket after subscribe.",this.socket);
-   }
+  }
 
-  sendMessage(newMsg:messageinputmodel):Observable<messageoutputmodel>
-  {
-    console.log("servicio post url" , environment.urlAPI) ;
-    console.log("modelos de envio" , newMsg) ;
+  sendMessage(newMsg: messageinputmodel): Observable<messageoutputmodel> {
     return this.httpclient.post(environment.urlAPI, newMsg) as Observable<messageoutputmodel>;
   }
-  getAllMessages(owner:string):Observable<messajeViewModelmodel[]>
-  {
+  getAllMessages(owner: string): Observable<messajeViewModelmodel[]> {
     return (this.httpclient.get(environment.urlAPI) as Observable<messageoutputmodel[]>)
-    .pipe(map(msg => msg.map((elem) => {
-      let finalmsg:messajeViewModelmodel= {
-        ...elem,
-        formatDate: new Date(elem.date),
-        class: (elem.user===owner)?"right":"left"
-      }
-      return finalmsg;
-    }))) as Observable<messajeViewModelmodel[]>;
+      .pipe(map(msg => msg.map((elem) => {
+        let finalmsg: messajeViewModelmodel = {
+          ...elem,
+          formatDate: new Date(elem.date),
+          class: (elem.user === owner) ? "right" : "left"
+        }
+        return finalmsg;
+      }))) as Observable<messajeViewModelmodel[]>;
   }
 
 

@@ -1,7 +1,7 @@
 <ion-header translucent>
   <ion-toolbar>
     <ion-title>
-      Blank
+      Chat Aplication
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,11 +16,13 @@
   <div id="container">
     
     <form>
-      <ion-item>
+      
         <ion-label>Introduce su nick</ion-label>
-        <ion-input [(ngModel)]="userName" name="name"></ion-input>
+    
+        <ion-input [(ngModel)]="userName" name="name" placeholder="Enter nick"></ion-input>
+       
         <ion-button [routerLink]="'/chat/' + userName">enviar</ion-button>
-      </ion-item>
+     
     </form>
 
   </div>

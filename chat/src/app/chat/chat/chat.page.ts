@@ -16,8 +16,7 @@ public input:string;
 public messageList:messajeViewModelmodel[]=[];
   constructor(private router: ActivatedRoute,private srvMessages:MessageServiceService) { }
 
-  ngOnInit() {    
-    console.log("params:", this.router.params);
+  ngOnInit() {        
     this.router.params.subscribe((_params:{nick:string})=>{
       this.nick = _params.nick;      
     });

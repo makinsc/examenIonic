@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>    
-    <ion-buttons>
+    <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{nick}}</ion-title>
@@ -19,7 +19,7 @@
   
 </ion-content>
 <ion-footer>
-  <form>
+  <form >
     <ion-item>
       <ion-label>inserta el texto</ion-label>
       <ion-input [(ngModel)]="input" name="mensaje"></ion-input>
